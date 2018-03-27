@@ -17,7 +17,7 @@ class Company(object):
         employee = Employee(**data)
 
         if title == 'CEO':
-            employee.associates = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'senior partner', self.employees))
+            employee.directs = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'senior partner', self.employees))
             employee.compensation_package = ['free money', 'cafeteria', '+1 free day']
 
             car = 'Bentley Coupe'
@@ -36,13 +36,13 @@ class Company(object):
                 car = 'VW Jetta'
 
             employee.car = car
-            employee.associates = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'junior partner', self.employees))
+            employee.directs = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'junior partner', self.employees))
 
         elif title == 'Junior partner':
             employee.salary = self.base_salary * 3
             employee.compensation_package = ['+1 free day']
             employee.car = 'VW Jetta'
-            employee.associates = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'minion', self.employees))
+            employee.directs = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'minion', self.employees))
 
         else:
             employee.salary = self.base_salary

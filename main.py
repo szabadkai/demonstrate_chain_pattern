@@ -1,44 +1,17 @@
-import experienced_intern.company
-import kindergarden.company
-import intern.company
-import programmer.company
+import json
+from programmer.company import Company
+from programmer.handler_factory import EmployeeFactory
 
 if __name__ == '__main__':
     # c = kindergarden.company.Company()
     # c = intern.company.Company()
     # c = experienced_intern.company.Company()
-    c = programmer.company.Company()
+    company = Company()
+    employee_factory = EmployeeFactory.get_hardler()
 
-    employees = [
-        {
-            'name': 'Csaba I.',
-            'age': 25,
-            'title': 'CEO'
-        },
-        {
-            'name': 'Some One 1',
-            'age': 30,
-            'title': 'Senior partner'
-        },
-        {
-            'name': 'Some One 2',
-            'age': 30,
-            'title': 'Junior partner'
-        },
-        {
-            'name': 'Some One 3',
-            'age': 18,
-            'title': 'Minion'
-        },
-        {
-            'name': 'Some One 4',
-            'age': 19,
-            'title': 'Minion'
-        }
-    ]
+    with open("csaba_co.json", 'r') as db:
+        employees = json.loads(db.read())
 
-    for emp in employees[::-1]:
-        c.add_new_employee(emp)
-
-    for emp in c.employees:
-        print vars(emp)
+    for row in reversed(employees):
+        company.add_new_employee(employee_factory.from_row(row, company))
+    print(company)

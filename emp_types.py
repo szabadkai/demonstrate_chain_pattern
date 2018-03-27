@@ -7,12 +7,7 @@ class CEO(Employee):
         super(CEO, self).__init__(name, title, age)
 
         self.compensation_package = ['free money', 'cafeteria', '+1 free day']
-
-        car = 'Bentley Coupe'
-        if age > 50:
-            car = 'Rolls Royce'
-
-        self.car = car
+        self.car = 'Rolls Royce' if age > 50 else 'Bentley Coupe'
 
 
 class Senior(Employee):

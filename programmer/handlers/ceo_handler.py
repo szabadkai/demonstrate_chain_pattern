@@ -1,16 +1,16 @@
 from emp_types import CEO
 from programmer.handlers.handler import Handler
-
+from ..tittles import TITTLES
 
 class CEOHandler(Handler):
 
     def _handle(self, data, company):
 
-        if data['title'] == 'CEO':
+        if data['title'] == TITTLES.ceo:
             employee = CEO(**data)
 
-            employee.associates = map(lambda x: x.name, filter(lambda x: x.title.lower() == 'senior partner', company.employees))
-            employee.salary = company.base_salary * 5 * max([len(company.employees), 1])
+            employee.directs = [x.name for x in company.employees if x.title == TITTLES.senior_partner]
+            employee.salary = company.base_salary * 5 * len(company.employees)
 
             return employee
         return False

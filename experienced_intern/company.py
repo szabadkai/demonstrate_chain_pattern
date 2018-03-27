@@ -52,6 +52,6 @@ class Company(object):
             salary = self.base_salary
 
         employee.salary = salary
-        employee.associates = associates
+        employee.directs = associates
 
         self.employees.append(employee)

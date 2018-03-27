@@ -7,4 +7,4 @@ class Employee(object):
         self.salary = None
         self.car = None
         self.compensation_package = None
-        self.associates = []
+        self.directs = []
